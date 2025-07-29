@@ -35,9 +35,9 @@ function PlaceCard({index, place, trip }) {
 
         <Link to={'https://www.google.com/maps/search/?api=1&query=' + place?.placeName} target='_blank'>
 
-            <div key={index} className='flex gap-2 my-1 border-2 border-gray-200 p-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-100 ease-in-out'>
+            <div key={index} className='flex gap-2 my-1 border-2 border-gray-200 p-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-100 ease-in-out sm:flex-row flex-col items-center sm:items-start'>
                 <div>
-                    <img src={trip?placePhotoUrl:"https://cdn.pixabay.com/photo/2023/08/06/23/16/ai-generated-8173941_1280.png"} className='h-[18vh] w-[10vw] md:w-[300px]  object-cover rounded-2xl' />
+                    <img src={trip?placePhotoUrl:"https://cdn.pixabay.com/photo/2023/08/06/23/16/ai-generated-8173941_1280.png"} className='lg:h-[20vh] md:h-[20vh] h-[25vh] lg:w-[20vw] md:w-[20vw] w-[80vw] object-cover rounded-2xl' />
                 </div>
                 <div>
                     <h2 className='text-md font-medium'>{place?.placeName}</h2>

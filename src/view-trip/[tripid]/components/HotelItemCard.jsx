@@ -34,7 +34,7 @@ function HotelItemCard({ hotel, index, trip }) {
         <div>
             <Link to={'https://www.google.com/maps/search/?api=1&query=' + hotel?.hotelName + ',' + hotel?.hotelAddress} target='_blank'>
                 <div className='hover:scale-105 transition-all duration-100 ease-in-out p-2 rounded-lg shadow-md cursor-pointer' key={index}>
-                    <img src={trip?placePhotoUrl:"https://cdn.pixabay.com/photo/2023/08/06/23/16/ai-generated-8173941_1280.png"} className='h-[300px] w-[300px]  object-cover rounded-2xl' />
+                    <img src={trip?placePhotoUrl:"https://cdn.pixabay.com/photo/2023/08/06/23/16/ai-generated-8173941_1280.png"} className='lg:h-[30vh] h-[20vh] w-auto  object-cover rounded-2xl' />
                     <div className='my-3'>
                         <h2 className='font-medium'>{hotel?.hotelName}</h2>
                         <h2 className='text-xs text-gray-500'> 📍 {hotel?.hotelAddress}</h2>

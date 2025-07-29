@@ -61,7 +61,7 @@ function Header() {
     <div className='p-3 shadow-sm flex justify-between items-center'>
       <img onClick={() => {
         window.location.href = '/';
-      }} src="https://bestfreeaiwebsites.com/wp-content/uploads/2024/06/Screenshot-2024-06-07-at-1.04.16%E2%80%AFPM.png" className='cursor-pointer h-[10vh] w-[12vw]' />
+      }} src="https://bestfreeaiwebsites.com/wp-content/uploads/2024/06/Screenshot-2024-06-07-at-1.04.16%E2%80%AFPM.png" className='sm:h-[70px] h-[60px] w-auto cursor-pointer ' />
 
 
       <div className='flex items-center gap-4 '>
@@ -71,21 +71,21 @@ function Header() {
 
               <button onClick={() => {
                 window.location.href = '/CreateTrip';
-              }} variant="outline" className='rounded-full'>+ Create Trip</button>
+              }} variant="outline"  className='h-[45px] w-auto sm:h-[45px] rounded-full text-xs '>+ Create Trip</button>
 
               <button onClick={() => {
                 window.location.href = '/my-trip';
-              }} variant="outline" className='rounded-full'>My Trip</button>
+              }} variant="outline" className='h-[45px] sm:h-[45px] rounded-full'>My Trip</button>
 
 
               <Popover>
-                <PopoverTrigger >
+                <PopoverTrigger className='cursor-pointer'>
                   {user.picture ?
-                    <img src={user.picture} className='h-[25px] w-[25px] rounded-full' />
-                    : <CgProfile className='h-[25px] w-[25px] rounded-full' />
+                    <img src={user.picture} className='sm:h-[25px] h-[20px]  sm:w-[25px] rounded-full' />
+                    : <CgProfile className='sm:h-[25px] sm:w-[25px] rounded-full' />
                   }
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent className={" p-2 text-center bg-blue-400 shadow-lg rounded-xl"}>
                   <h2 className='cursor-pointer' onClick={() => {
                     googleLogout();
                     localStorage.clear();
