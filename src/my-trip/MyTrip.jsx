@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../service/firebaseconfig'; 
-import UserTripCardItem from './UserTripCardItem';
+
+
 
 function MyTrip() {
   const [userTrips, setUserTrips] = useState([]);
@@ -19,9 +20,8 @@ function MyTrip() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user) {
-     
-    alert("Please login to view your trips.");
-        window.location.href = '/';
+      
+      window.location.href = '/';
       return;
     }
 

@@ -25,33 +25,33 @@ function Header() {
 
   const [openDialog, setOpenDialog] = useState(false);
 
-   const login = useGoogleLogin({
-      onSuccess: (codeResp) => {
-        // console.log("Login Success:", codeResp)
-        GetUserProfile(codeResp);
-      },
-      onError: (error) => console.error("Login Failed:", error)
-    });
+  const login = useGoogleLogin({
+    onSuccess: (codeResp) => {
+      // console.log("Login Success:", codeResp)
+      GetUserProfile(codeResp);
+    },
+    onError: (error) => console.error("Login Failed:", error)
+  });
 
-    const GetUserProfile = (tokenInfo) => {
+  const GetUserProfile = (tokenInfo) => {
     // console.log("Token Info:", tokenInfo);
     // console.log("Access Token:", tokenInfo?.access_token);
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
 
-      headers: { 
+      headers: {
         Authorization: `Bearer ${tokenInfo?.access_token}`,
         Accept: 'application/json'
       }
     }).then((response) => {
-     // console.log("User Profileresponse :", response);
+      // console.log("User Profileresponse :", response);
       localStorage.setItem('user', JSON.stringify(response.data));
       setOpenDialog(false);
       window.location.reload();
     })
   }
-  
-  const user =JSON.parse(localStorage.getItem('user'));
-   
+
+  const user = JSON.parse(localStorage.getItem('user'));
+
   useEffect(() => {
     // console.log("User data:", user);
     //console.log("profile picture",user?.picture)
@@ -59,19 +59,21 @@ function Header() {
 
   return (
     <div className='p-3 shadow-sm flex justify-between items-center'>
-        <img onClick={()=>{
-          window.location.href = '/';
-        }} src="/logo.svg" className='cursor-pointer'/>
-        <div className='flex items-center gap-4 '>
-          {
-            user?
-             <div className='flex items-center gap-2 w-auto'>
+      <img onClick={() => {
+        window.location.href = '/';
+      }} src="https://bestfreeaiwebsites.com/wp-content/uploads/2024/06/Screenshot-2024-06-07-at-1.04.16%E2%80%AFPM.png" className='cursor-pointer h-[10vh] w-[12vw]' />
 
-              <button onClick={()=>{
+
+      <div className='flex items-center gap-4 '>
+        {
+          user ?
+            <div className='flex items-center gap-2 w-auto'>
+
+              <button onClick={() => {
                 window.location.href = '/CreateTrip';
               }} variant="outline" className='rounded-full'>+ Create Trip</button>
 
-              <button onClick={()=>{
+              <button onClick={() => {
                 window.location.href = '/my-trip';
               }} variant="outline" className='rounded-full'>My Trip</button>
 
@@ -79,12 +81,12 @@ function Header() {
               <Popover>
                 <PopoverTrigger >
                   {user.picture ?
-                  <img src={user.picture} className='h-[25px] w-[25px] rounded-full'/>
-                  : <CgProfile className='h-[25px] w-[25px] rounded-full'/>
+                    <img src={user.picture} className='h-[25px] w-[25px] rounded-full' />
+                    : <CgProfile className='h-[25px] w-[25px] rounded-full' />
                   }
                 </PopoverTrigger>
                 <PopoverContent>
-                  <h2 className='cursor-pointer' onClick={()=>{
+                  <h2 className='cursor-pointer' onClick={() => {
                     googleLogout();
                     localStorage.clear();
                     window.location.reload();
@@ -92,11 +94,11 @@ function Header() {
                 </PopoverContent>
               </Popover>
             </div>
-            :<Button onClick={()=>{setOpenDialog(true)}}>Sign In</Button>
-          }
-        
-        </div>
-        <Dialog open={openDialog}>
+            : <Button onClick={() => { setOpenDialog(true) }}>Sign In</Button>
+        }
+
+      </div>
+      <Dialog open={openDialog}>
 
         <DialogContent className={"sm:max-w-lg sm:rounded-2xl bg-white p-6"}>
           <DialogHeader>
@@ -106,19 +108,39 @@ function Header() {
               <p className="text-gray-600 mb-4">
                 Please login to generate your trip. You can login using your google account
               </p>
-              <button onClick={login}
-                className="flex gap-2.5 items-center justify-between" > <FaGoogle className='h-7 w-7' /> Login With Google</button>
+
+              <div className='flex items-center gap-4 justify-between'>
+                <Button
+                  className="w-auto bg-blue-500 text-white hover:bg-blue-600 hover:text-white"
+                  onClick={() => {
+                    login();
+                  }}
+                >
+                  <FaGoogle className="mr-2" />
+                  Login with Google
+                </Button>
+
+                <DialogClose  className=" w-auto h-[40px] ">
+                  <Button  onClick={() => setOpenDialog(false)} className={"w-full h-full"  }>
+                    Close
+                  </Button>
+                </DialogClose>
+              </div>
+
+
             </DialogDescription>
 
 
+
+
           </DialogHeader>
-          
-         
+
+
         </DialogContent>
 
       </Dialog>
     </div>
-    
+
   )
 }
 

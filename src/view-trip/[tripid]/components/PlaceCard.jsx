@@ -13,7 +13,7 @@ function PlaceCard({index, place, trip }) {
 
     const fetchPlacePhoto = async (placeName) => {
         try {
-            const response = await getPhotoByQuery(placeName);
+            const response = await getPhotoByQuery(placeName + ',' + trip.userSelecation.destination);
             //console.log("Unsplash Response:", response);
             const photo = response.data.results[0];
 

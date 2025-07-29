@@ -15,6 +15,8 @@ import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { doc, setDoc } from "firebase/firestore";
 import { db } from '../service/firebaseconfig';
+  import { ToastContainer, toast } from 'react-toastify';
+  
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
@@ -255,7 +257,7 @@ export default function CreateTripForm() {
         className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition text-center"
       >
         {loading ?
-          <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin ' />
+         <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin ' />
           : "Generate My Trip" }
       </button>
 

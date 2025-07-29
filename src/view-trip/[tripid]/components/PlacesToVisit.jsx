@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { data, Link } from 'react-router-dom'
 import PlaceCard from './PlaceCard';
 
 function PlacesToVisit({ trip }) {
