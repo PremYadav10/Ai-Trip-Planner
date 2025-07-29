@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../service/firebaseconfig'; 
+import UserTripCardItem from './UserTripCardItem';
+
 
 
 

@@ -15,14 +15,10 @@ import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { doc, setDoc } from "firebase/firestore";
 import { db } from '../service/firebaseconfig';
-  import { ToastContainer, toast } from 'react-toastify';
-  
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { useNavigate } from 'react-router-dom';
-// import { toast } from 'sonner'; // FIX 1: 'toast' ko import karna zaruri hai
-// AI_PROMPT ko function ke bahar define karein taaki yeh har baar re-create na ho.
 
 const AI_PROMPT = 'Generate Travel Plan for Location : {location}, for {totalDays} Days for {traveler} with a {budget} budget, Give me a Hotels options list with HotelName, Hotel address, Price, hotel image url, geo coordinates, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, rating, Time travel each of the location for {totalDays} days with each day plan with best time to visit in JSON format.';
 
@@ -84,20 +80,20 @@ export default function CreateTripForm() {
 
       // Step 5: Text response ko JSON object mein convert karein
       // FIX 4: JSON.parse ko try-catch mein rakhna zaruri hai, kyunki agar response valid JSON nahi hai toh error aayega.
-      
+
       // --- START OF THE FIX ---
 
       // Step 1: Find the start and end of the JSON block
       const startIndex = responseText.indexOf('{');
       const endIndex = responseText.lastIndexOf('}');
-      
+
       if (startIndex === -1 || endIndex === -1) {
         throw new Error("Valid JSON object not found in the response.");
       }
-      
+
       // Step 2: Extract only the JSON part of the string
       const jsonString = responseText.substring(startIndex, endIndex + 1);
-      
+
       console.log("Cleaned JSON String:", jsonString);
 
       try {
@@ -127,7 +123,7 @@ export default function CreateTripForm() {
     console.log("Access Token:", tokenInfo?.access_token);
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
 
-      headers: { 
+      headers: {
         Authorization: `Bearer ${tokenInfo?.access_token}`,
         Accept: 'application/json'
       }
@@ -152,14 +148,14 @@ export default function CreateTripForm() {
     });
 
     setLoading(false);
-    navigate(`/view-trip/${docId}`); 
+    navigate(`/view-trip/${docId}`);
   }
 
 
 
 
   // Naya function: Place name se photo fetch karne ke liye
-  
+
 
   const budget = watch("budget");
   const companion = watch("companion");
@@ -169,7 +165,7 @@ export default function CreateTripForm() {
       onSubmit={handleSubmit(OnGenerateTrip)}
       className="max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow space-y-6 my-7"
     >
-      <h2 className="text-2xl font-bold text-center text-blue-700">Tell us your travel preferences 🏕️🌴</h2>
+      <h2 className="text-4xl font-bold text-center text-blue-700">Tell us your travel preferences 🏕️🌴</h2>
       <p className="text-gray-600 text-center">
         Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
       </p>
@@ -256,9 +252,9 @@ export default function CreateTripForm() {
         type="submit"
         className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition text-center"
       >
-        {loading ?
-         <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin ' />
-          : "Generate My Trip" }
+        {loading ? <>
+          <AiOutlineLoading3Quarters className='h-7 w-7 animate-spin ' />
+          Trip Generating... Please wait...</> : "Generate My Trip"}
       </button>
 
       <Dialog open={openDialog}>
