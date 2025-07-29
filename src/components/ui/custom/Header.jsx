@@ -104,11 +104,9 @@ function Header() {
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold text-blue-700 mb-4">Login Required</DialogTitle>
             <DialogDescription className=" text-center">
-              <h2 className="text-lg font-semibold mb-4">Login Required</h2>
               <p className="text-gray-600 mb-4">
                 Please login to generate your trip. You can login using your google account
               </p>
-
               <div className='flex items-center gap-4 justify-between'>
                 <Button
                   className="w-auto bg-blue-500 text-white hover:bg-blue-600 hover:text-white"
@@ -119,25 +117,15 @@ function Header() {
                   <FaGoogle className="mr-2" />
                   Login with Google
                 </Button>
-
                 <DialogClose  className=" w-auto h-[40px] ">
                   <Button  onClick={() => setOpenDialog(false)} className={"w-full h-full"  }>
                     Close
                   </Button>
                 </DialogClose>
               </div>
-
-
             </DialogDescription>
-
-
-
-
           </DialogHeader>
-
-
-        </DialogContent>
-
+    </DialogContent>
       </Dialog>
     </div>
 

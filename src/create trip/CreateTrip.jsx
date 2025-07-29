@@ -19,6 +19,7 @@ import { db } from '../service/firebaseconfig';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { useNavigate } from 'react-router-dom';
+import { DialogClose } from '@radix-ui/react-dialog';
 
 const AI_PROMPT = 'Generate Travel Plan for Location : {location}, for {totalDays} Days for {traveler} with a {budget} budget, Give me a Hotels options list with HotelName, Hotel address, Price, hotel image url, geo coordinates, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, rating, Time travel each of the location for {totalDays} days with each day plan with best time to visit in JSON format.';
 
@@ -263,12 +264,27 @@ export default function CreateTripForm() {
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold text-blue-700 mb-4">Login Required</DialogTitle>
             <DialogDescription className=" text-center">
-              <h2 className="text-lg font-semibold mb-4">Login Required</h2>
+              
               <p className="text-gray-600 mb-4">
                 Please login to generate your trip. You can login using your google account
               </p>
-              <button onClick={login}
-                className="flex gap-2.5 items-center justify-between" > <FaGoogle className='h-7 w-7' /> Login With Google</button>
+
+              <div className='flex items-center gap-4 justify-between'>
+                <button
+                  className="w-auto bg-blue-500 text-white hover:bg-blue-600 hover:text-white"
+                  onClick={() => {
+                    login();
+                  }}
+                >
+                  <FaGoogle className="mr-2 " />
+                  Login with Google
+                </button>
+                <DialogClose  className=" relative w-auto h-[40px] ">
+                  <button  onClick={() => setOpenDialog(false)} className="mt-[-10px] p-0">
+                    Close
+                  </button>
+                </DialogClose>
+              </div>
             </DialogDescription>
 
           </DialogHeader>
